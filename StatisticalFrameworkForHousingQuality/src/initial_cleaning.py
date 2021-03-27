@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 
 # We read the dataset as a Pandas DataFrame (easier for analysis)
-df = pd.read_csv('dataset.csv')
+df = pd.read_csv('dataset_raw.csv')
 df = df.drop(columns=['index'])
 
 # we work with the walls variables
@@ -118,4 +118,4 @@ final_df = pd.DataFrame()
 final_df = df_pred.join(df_cond)
 
 # exporting of the dataset
-final_df.to_csv(r'dataset_final.csv')
+final_df.to_csv('dataset_processed.csv', index=False)

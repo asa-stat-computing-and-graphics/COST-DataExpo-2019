@@ -11,7 +11,7 @@ source("processing.R")
 #reading in the data
 # IMPORTANT: set working directory to folder where all the files are located with setwd or from RStudio menu
 
-datasets <- clean_data('dataset_final.csv')
+datasets <- clean_data('data/dataset_processed.csv')
 
 ##############
 ## ANALYSIS ##
@@ -82,7 +82,7 @@ owners_coeffs <- summary(reg_owner_interac)$coefficients[,1]
 
 # combining their coefficients to compare them
 renter_vs_owner <- cbind(renters_coeffs,owners_coeffs)
-write.csv(renter_vs_owner,'renter_vs_owner.csv')
+write.csv(renter_vs_owner,'data/renter_vs_owner.csv')
 
 
 ## FIFTH SECTION ##
@@ -106,5 +106,5 @@ all2017c <- summary(lm(pca_scaled ~ . , data=subset(datasets$noHval_noRent, Year
 allcoeffs <- cbind(all1991c,all1993c, all1996c,all1999c, all2002c, all2005c,  all2008c, all2011c, all2014c, all2017c)
 allcoeffs
 
-write.csv(allcoeffs,'allcoeffs.csv')
+write.csv(allcoeffs,'data/allcoeffs.csv')
 

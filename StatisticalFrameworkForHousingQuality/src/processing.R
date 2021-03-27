@@ -9,7 +9,7 @@ clean_data <- function(filename) {
   inputdata <- original_dataset #inputdata will be used for the entire analysis
   
   #Remove variables used to create HQI since they will not be used individually in the analysis
-  inputdata <- subset(inputdata, select = -c(X,Severity.walls, Severity.windows, Severity.stairways, Severity.floors,General.building.condition, Toilets.breakdowns, Kitchen.functioning,Heating.breakdowns, Mice.and.rats, Holes.in.floors, Broken.plaster,Water.leakage,pca))
+  inputdata <- subset(inputdata, select = -c(Severity.walls, Severity.windows, Severity.stairways, Severity.floors,General.building.condition, Toilets.breakdowns, Kitchen.functioning,Heating.breakdowns, Mice.and.rats, Holes.in.floors, Broken.plaster,Water.leakage,pca))
 
   #Remove variables that are not used in the analysis for different reasons (too many levels that are complex to merge, too many NaNs)
   inputdata <- subset(inputdata, select = -c(Householder.race,Number.of.people))

@@ -10,7 +10,7 @@ library(ggcorrplot)
 library(gridExtra)
 library(GGally)
 
-datasets <- clean_data('dataset_final.csv')
+datasets <- clean_data('data/dataset_final.csv')
 
 
 ###Figures###
