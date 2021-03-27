@@ -10,7 +10,7 @@ source("src/processing.R")
 ## DATA LOADING ##
 ##################
 
-#reading in the data
+# reading in the data
 # IMPORTANT: set working directory to the root folder 
 # where all the files are located with the setwd command
 # or from the RStudio menu directly
