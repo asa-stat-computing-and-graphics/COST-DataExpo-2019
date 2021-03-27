@@ -70,8 +70,8 @@ p6 <- ggplot(datasets$inputdata, aes(x=Householder.income)) +
   geom_density(fill="Black", alpha=0.5) + theme_bw()+ scale_y_continuous(name = "Density")+
   scale_x_continuous(name="Log Householder income")
 
-grid.arrange(p1,p2,p3,p4,p5,p6,ncol=3)
-ggsave("figures/distribution_plots.png")
+distribution_plots <- grid.arrange(p1,p2,p3,p4,p5,p6,ncol=3)
+ggsave("figures/distribution_plots.png",distribution_plots)
 
 #Figure 4: Correlation Matrix
 ggcorr(datasets$inputdata,label = TRUE,name = "Color \nScale", label_round = 2, hjust = 0.85, layout.exp = 2, size = 4.5,label_size = 4.5) + theme_bw() +
