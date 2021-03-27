@@ -2,15 +2,17 @@
 # Damien Chambon and Jacob Gerszten
 # Graph creation file
 
-source("processing.R")
+source("src/processing.R")
 
-# IMPORTANT: set working directory to folder where all the files are located with setwd or from RStudio menu
+# IMPORTANT: set working directory to the root folder 
+# where all the files are located with the setwd command
+# or from the RStudio menu directly
 
 library(ggcorrplot)
 library(gridExtra)
 library(GGally)
 
-datasets <- clean_data('data/dataset_final.csv')
+datasets <- clean_data('data/dataset_processed.csv')
 
 
 ###Figures###

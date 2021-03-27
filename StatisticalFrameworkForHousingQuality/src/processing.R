@@ -4,7 +4,6 @@
 
 clean_data <- function(filename) {
   original_dataset <- read.csv(filename, header=TRUE, sep=",")
-  original_dataset <- subset(original_dataset, select=-c(index))
   
   inputdata <- original_dataset #inputdata will be used for the entire analysis
   
