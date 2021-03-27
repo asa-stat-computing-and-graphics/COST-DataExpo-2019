@@ -23,6 +23,7 @@ ggplot(datasets$inputdata, aes(pca_scaled)) + geom_histogram(color = "black", al
                      expand = c(0,0)) +
   scale_y_continuous(name= "Count",expand = c(0,0), limits = c(0,60000)) +
   theme_grey() + theme(text = element_text(size = 20))
+ggsave("figures/overall_distribution.png")
 
 #Figure 1: HQI counts by ownership status
 ggplot(datasets$inputdata, aes(x=pca_scaled, color = Status, fill=Status)) + geom_histogram(color = "black", alpha = .7, breaks = seq(0, 10, 1), binwidth = 1) +
@@ -31,6 +32,7 @@ ggplot(datasets$inputdata, aes(x=pca_scaled, color = Status, fill=Status)) + geo
                      expand = c(0,0)) +
   scale_y_continuous(name="Count", expand = c(0,0), limits = c(0,60000)) +
   theme_bw()+ theme(text = element_text(size = 20))
+ggsave("figures/HQI_counts_by_ownership.png")
 
 #Figure 2: HQI density plot by ownership status
 ggplot(data=datasets$inputdata, aes(x = pca_scaled, fill=Status)) + 
@@ -41,7 +43,7 @@ ggplot(data=datasets$inputdata, aes(x = pca_scaled, fill=Status)) +
                      expand = c(0,0)) +
   scale_y_continuous(name="Density", expand = c(0,0), limits=c(0,1))+
   theme_bw() + theme(text = element_text(size = 20))
-
+ggsave("figures/HQI_density_by_ownership.png")
 
 #Figure 3: Distribution plots
 p1 <- ggplot(datasets$inputdata, aes(x=Householder.age)) + 
@@ -69,8 +71,10 @@ p6 <- ggplot(datasets$inputdata, aes(x=Householder.income)) +
   scale_x_continuous(name="Log Householder income")
 
 grid.arrange(p1,p2,p3,p4,p5,p6,ncol=3)
+ggsave("figures/distribution_plots.png")
 
 #Figure 4: Correlation Matrix
 ggcorr(datasets$inputdata,label = TRUE,name = "Color \nScale", label_round = 2, hjust = 0.85, layout.exp = 2, size = 4.5,label_size = 4.5) + theme_bw() +
   theme(text = element_text(size = 13))
+ggsave("figures/correlation_matrix.png")
 

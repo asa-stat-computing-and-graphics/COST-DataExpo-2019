@@ -2,6 +2,8 @@
 # Damien Chambon and Jacob Gerszten
 # Statistical analysis file
 
+library(data.table)
+
 source("src/processing.R")
 
 ##################
@@ -107,6 +109,8 @@ all2017c <- summary(lm(pca_scaled ~ . , data=subset(datasets$noHval_noRent, Year
 
 allcoeffs <- cbind(all1991c,all1993c, all1996c,all1999c, all2002c, all2005c,  all2008c, all2011c, all2014c, all2017c)
 allcoeffs
+
+colnames(allcoeffs) <- c("1991", "1993", "1996", "1999", "2002", "2005", "2008", "2011", "2014", "2017")
 
 write.csv(allcoeffs,'data/allcoeffs.csv')
 
