@@ -21,7 +21,7 @@ datasets <- clean_data('data/dataset_processed.csv')
 ## ANALYSIS ##
 ##############
 
-## FIRST SECTION ##
+## Sections 3.1 and 4.1 in the paper ##
 
 get_statistics <- function(x) {
   cat('Mean:',mean(x),'\n')
@@ -44,7 +44,7 @@ datasets$noHval_noRent <- subset(datasets$noHval_noRent, select = -c(Number.of.b
 datasets$withHval_noRent <- subset(datasets$withHval_noRent, select = -c(Number.of.bedrooms))
 datasets$noHval_withRent <- subset(datasets$noHval_withRent, select = -c(Number.of.bedrooms))
 
-## SECOND SECTION ##
+## Sections 3.2 and 4.2 in the paper ##
 
 pca_owners <- subset(datasets$inputdata, c(Length.of.lease=="Owner-occupied"))$pca_scaled
 pca_renters <- subset(datasets$inputdata, c(Length.of.lease!="Owner-occupied"))$pca_scaled
@@ -55,13 +55,13 @@ length(pca_renters)
 wilcox.test(pca_owners, pca_renters)
 
 
-## THIRD SECTION ##
+## Sections 3.3 and 4.3 in the paper ##
 
 # Linear regression for all years
 summary(lm(pca_scaled ~ .-Year, data=subset(datasets$noHval_noRent,select=-Length.of.lease)))
 
 
-## FOURTH SECTION ##
+## Sections 3.4 and 4.4 in the paper ##
 
 # status as an interaction term to check if it has a significant impact or not
 reg_status_interac <- lm(pca_scaled ~ .*Status, data=datasets$noHval_noRent)
@@ -89,7 +89,7 @@ renter_vs_owner <- cbind(renters_coeffs,owners_coeffs)
 write.csv(renter_vs_owner,'data/renter_vs_owner.csv')
 
 
-## FIFTH SECTION ##
+## Sections 3.5 and 4.5 in the paper ##
 
 # year as an interaction term to check if it has a significant impact or not
 reg_year_interac <- lm(pca_scaled ~ .*Year, data=datasets$noHval_noRent)
