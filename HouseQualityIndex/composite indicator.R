@@ -5,8 +5,25 @@ library(ggplot2)
 
 load('R1.RData')
 #data <- read_csv("data2.csv")
-#data$`Condition of Stairways (Exterior and Interior): No exterior steps or stairways` <- NULL
+data$`Condition of Stairways (Exterior and Interior): No exterior steps or stairways` <- NULL
 rent=data$Rent
+
+### Table 1
+## PCA
+pca_result <- prcomp(df, scale = TRUE)
+summary(pca_result)
+
+## MCA
+dffac = factor(df[,1], ordered = TRUE)
+for (i in 1:52){
+  tfac = factor(df[,i], ordered = TRUE)
+  dffac = data.frame(dffac, tfac)
+}
+colnames(dffac)=labels(df[1,])
+dffac[,53] <- NULL
+mca <- MCA(dffac, ncp = 1)
+summary(mca)
+
 
 df=data[,13:64]
 df=as.matrix(df)

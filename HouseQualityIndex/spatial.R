@@ -99,6 +99,7 @@ for(i in 1:10)
   }
 datast=cbind(datast,rent1)
 re2=lm(Rent~Number_of_Persons+Length_of_Lease+index+rent1,data=datast)
+#Table 2
 summary(re2)
 datast$rent2=predict(re2)
 
