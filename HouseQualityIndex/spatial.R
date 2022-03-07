@@ -3,9 +3,11 @@ library(magrittr)
 library(SpatioTemporal)
 library(ggplot2)
 
-data=read.csv('data3.csv',header = T)
-location=read.csv("location.csv",header=T)
-datast=merge(data,location,by=c("Borough","Sub_Borough"))
+
+load('R1.RData')
+#data=read.csv('data3.csv',header = T)
+#location=read.csv("location.csv",header=T)
+#datast=merge(data,location,by=c("Borough","Sub_Borough"))
 
 s=5e-6
 len=8902
@@ -64,8 +66,8 @@ print(SVD.cv)
 
 ## Figure 3 & 4
 plot(SVD.cv)
-
 plot(SVD.cv, pairs = TRUE)
+
 
 datanew <- updateTrend(datanew, n.basis = 4)
 beta <- estimateBetaFields(datanew)
@@ -100,7 +102,7 @@ re2=lm(Rent~Number_of_Persons+Length_of_Lease+index+rent1,data=datast)
 summary(re2)
 datast$rent2=predict(re2)
 
-write.csv(datast,file="data4.csv",row.names = F)
+#write.csv(datast,file="data4.csv",row.names = F)
 
 #Figure 5
 final <- datast %>% 

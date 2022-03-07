@@ -1,22 +1,22 @@
 library(readr)
 library(glmnet)
 library(corrplot)
+library(ggplot2)
 
-### Data preparation
-data <- read_csv("data2.csv")
-data$`Condition of Stairways (Exterior and Interior): No exterior steps or stairways` <- NULL
+load('R1.RData')
+#data <- read_csv("data2.csv")
+#data$`Condition of Stairways (Exterior and Interior): No exterior steps or stairways` <- NULL
 rent=data$Rent
 
-#Figure 1 in paper
 df=data[,13:64]
 df=as.matrix(df)
 colnames(df) <- 1:52
+#Figure 1 in paper
 corrplot.mixed(cor(df), lower = "square", upper = "circle", tl.col = "black",tl.cex=0.6)
-#corrplot(cor(df),method='square')
 
-#Figure 2 in paper
 temp_data=data.frame((df!=0)%>%apply(2,mean))
 colnames(temp_data)='frequency'
+#Figure 2 in paper
 ggplot(temp_data,aes(x=frequency))+geom_histogram(bins = 21)
 
 ## Ridge Regression
@@ -33,6 +33,6 @@ data$index_ridge <- NULL
 data[,13:64] <- NULL
 
 
-write.csv(data,file="data3.csv",row.names = F)
+#write.csv(data,file="data3.csv",row.names = F)
 
 
