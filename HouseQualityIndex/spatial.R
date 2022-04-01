@@ -108,7 +108,7 @@ datast$rent2=predict(re2)
 #Figure 5
 final <- datast %>% 
   group_by(Year,Borough,Sub_Borough) %>%
-  summarise(mean_Rent = mean(Rent),mean_Rent2 = mean(rent2),mean_Rent1 = mean(rent1))
+  summarise(mean_Rent = mean(Rent), mean_Rent2 = mean(rent2), mean_Rent1 = mean(rent1))
 final %>% 
   group_by(Borough, Sub_Borough) %>% 
   mutate(id = group_indices()) %>% 
