@@ -1,3 +1,5 @@
+remotes::install_version('SpatioTemporal','1.1.9.1')
+
 library(dplyr)
 library(magrittr)
 library(SpatioTemporal)
@@ -5,9 +7,9 @@ library(ggplot2)
 
 
 load('R1.RData')
-#data=read.csv('data3.csv',header = T)
-#location=read.csv("location.csv",header=T)
-#datast=merge(data,location,by=c("Borough","Sub_Borough"))
+#data=read.csv('intermediate_data/data3.csv',header = T)
+#location=read.csv("intermediate_data/location.csv",header=T)
+datast=merge(data,location,by=c("Borough","Sub_Borough"))
 
 s=5e-6
 len=8902
@@ -92,7 +94,7 @@ predtest=predict(modeltest,x)
 predrent=predtest$EX*sd(datast$Rent)+mean(datast$Rent)
 
 rent1=1:104564
-year=unique(datast$Year)
+year=sort(unique(datast$Year))
 for(i in 1:10)
   for(j in 1:55){
     rent1[which(datast$Year==year[i] & datast$id==j)]=predrent[i,j]
@@ -103,7 +105,7 @@ re2=lm(Rent~Number_of_Persons+Length_of_Lease+index+rent1,data=datast)
 summary(re2)
 datast$rent2=predict(re2)
 
-#write.csv(datast,file="data4.csv",row.names = F)
+#write.csv(datast,file="intermediate_data/data4.csv",row.names = F)
 
 #Figure 5
 final <- datast %>% 
@@ -123,3 +125,4 @@ final %>%
                      labels = c("3", "11", "40")) +
   ylab("Rent")
 
+#save.image(file = "R1.RData")

@@ -2,11 +2,15 @@ library(readr)
 library(glmnet)
 library(corrplot)
 library(ggplot2)
+library(FactoMineR)
 
 load('R1.RData')
-#data <- read_csv("data2.csv")
-data$`Condition of Stairways (Exterior and Interior): No exterior steps or stairways` <- NULL
+#data <- read.csv("intermediate_data/data2.csv")
+data$`Condition.of.Stairways..Exterior.and.Interior...No.exterior.steps.or.stairways` <- NULL
 rent=data$Rent
+df=data[,13:64]
+df=as.matrix(df)
+colnames(df) <- 1:52
 
 ### Table 1
 ## PCA
@@ -25,9 +29,6 @@ mca <- MCA(dffac, ncp = 1)
 summary(mca)
 
 
-df=data[,13:64]
-df=as.matrix(df)
-colnames(df) <- 1:52
 #Figure 1 in paper
 corrplot.mixed(cor(df), lower = "square", upper = "circle", tl.col = "black",tl.cex=0.6)
 
@@ -50,6 +51,6 @@ data$index_ridge <- NULL
 data[,13:64] <- NULL
 
 
-#write.csv(data,file="data3.csv",row.names = F)
+#write.csv(data,file="intermediate_data/data3.csv",row.names = F)
 
 
