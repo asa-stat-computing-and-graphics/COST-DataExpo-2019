@@ -5,7 +5,6 @@ library(magrittr)
 library(SpatioTemporal)
 library(ggplot2)
 
-
 load('R1.RData')
 #data=read.csv('intermediate_data/data3.csv',header = T)
 #location=read.csv("intermediate_data/location.csv",header=T)
@@ -31,7 +30,6 @@ for(j in 1:ing[5]){
   id[which(datast$Borough==5 & datast$Sub_Borough==j)]=52+j
 }
 datast=cbind.data.frame(id,datast)
-
 
 a <- datast %>% 
   group_by(Year,Borough,Sub_Borough) %>%
