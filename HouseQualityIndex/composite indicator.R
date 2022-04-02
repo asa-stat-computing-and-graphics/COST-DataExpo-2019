@@ -5,12 +5,12 @@ library(ggplot2)
 library(FactoMineR)
 
 load('R1.RData')
-data <- read.csv("intermediate_data/data2.csv")
-data$`Condition.of.Stairways..Exterior.and.Interior...No.exterior.steps.or.stairways` <- NULL
-rent=data$Rent
-df=data[,13:64]
-df=as.matrix(df)
-colnames(df) <- 1:52
+#data <- read.csv("intermediate_data/data2.csv")
+#data$`Condition.of.Stairways..Exterior.and.Interior...No.exterior.steps.or.stairways` <- NULL
+#rent=data$Rent
+#df=data[,13:64]
+#df=as.matrix(df)
+#colnames(df) <- 1:52
 
 ### Table 1
 ## PCA
@@ -19,15 +19,13 @@ summary(pca_result)
 
 ## MCA
 dffac = factor(df[,1], ordered = TRUE)
-for (i in 1:52){
+for (i in 2:52){
   tfac = factor(df[,i], ordered = TRUE)
   dffac = data.frame(dffac, tfac)
 }
-colnames(dffac)=labels(df[1,])
-dffac[,53] <- NULL
+dffac[,51] <- NULL
 mca <- MCA(dffac, ncp = 1)
 summary(mca)
-
 
 #Figure 1 in paper
 corrplot.mixed(cor(df), lower = "square", upper = "circle", tl.col = "black",tl.cex=0.6)
@@ -49,7 +47,6 @@ data$condition_rating[data$condition_rating<0]=0
 data$condition_rating[data$condition_rating>10]=10
 data$index_ridge <- NULL
 data[,13:64] <- NULL
-
 
 #write.csv(data,file="intermediate_data/data3.csv",row.names = F)
 
