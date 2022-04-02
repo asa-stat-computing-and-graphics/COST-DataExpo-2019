@@ -5,7 +5,7 @@ library(ggplot2)
 library(FactoMineR)
 
 load('R1.RData')
-#data <- read.csv("intermediate_data/data2.csv")
+data <- read.csv("intermediate_data/data2.csv")
 data$`Condition.of.Stairways..Exterior.and.Interior...No.exterior.steps.or.stairways` <- NULL
 rent=data$Rent
 df=data[,13:64]
