@@ -12,11 +12,12 @@ We conduct extensive data preprocessing before analyzing and visualizaing the da
 ## Replication of the paper
 To replicate the figures and tables in the paper, please load 'R1.RData' and run the plot functions.
 1. 'composite indicator.R' is the R file to construct house quality index.
--  Run line 14 and 25 to obtain result of Table 1
--  Run line 32 to obtain Figure 1
--  Run line 37 to obtain Figure 2
+-  Run line 18 and 28 to obtain result of Table 1
+-  Run line 31 to obtain Figure 1
+-  Run line 36 to obtain Figure 2
 
 2. 'spatial.R' fits a spatio temporal model to predict the rent. The data are also included in 'R1.RData'.
+- Run line 1 to install 'SpatioTemporal' package.
 - Run line 68, 69 to obtain Figure 3 and 4
 - Run line 103 to obtain Table 2
 - Run line 109 to 124 to obtain Figure 5
